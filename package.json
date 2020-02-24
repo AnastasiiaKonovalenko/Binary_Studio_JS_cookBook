@@ -1,6 +1,7 @@
 {
   "name": "task__cook_book",
   "version": "0.1.0",
+  "homepage": "https://anastasiiakonovalenko.github.io/Binary_Studio_JS_cookBook",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.3",
