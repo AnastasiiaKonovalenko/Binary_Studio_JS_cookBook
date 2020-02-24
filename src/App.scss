@@ -1,0 +1,48 @@
+@import "./components/header/header";
+@import "./components/recipesList/recipes_list";
+@import "./components/recipe/recipe";
+@import "./styles/vars";
+@import "./components/footer/footer";
+@import "./components/noMatch/noMatch";
+
+html {
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+ul {
+  padding: 0;
+}
+
+.appStore {
+  background: url("./images/appStore.png") no-repeat;
+  background-size: cover;
+}
+
+.googlePlay {
+  background: url("./images/googlePlay.png") no-repeat;
+  background-size: cover;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.picture {
+  width: 100px;
+  height: 100px;
+  background: url("./images/vortrittssignal001-stop.png") no-repeat;
+  background-size: cover;
+}

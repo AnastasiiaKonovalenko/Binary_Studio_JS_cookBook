@@ -1,0 +1,35 @@
+.article {
+  padding: 0 40px;
+
+  &__text {
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    text-align: justify;
+    width: 100%;
+  }
+
+  &__author,
+  &__source,
+  &__tag,
+  &__date {
+    font-size: 16px;
+  }
+
+  &__author span,
+  &__source span,
+  &__tag span,
+  &__date span {
+    font-weight: 700;
+  }
+}
+
+.MuiInput-underline:before,
+.MuiInput-underline:after {
+  display: none;
+}
+
+.makeStyles-root-195 > *,
+.makeStyles-root-280 > *,
+.MuiInputBase-multiline.makeStyles-input-200 {
+  padding: 0;
+}
