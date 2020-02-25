@@ -1,0 +1,184 @@
+{
+  "data": [
+  {
+  "id": "2",
+  "name": "Check if a value is an array",
+  "article": "The simplest way to check if an object is an array (using ECMascript 5 and higher) is the array.isarray method.",
+  "code": "var x = [1,2,3];\n var y = \"something else entirely\";\n\nconsole.log(array.isarray(x)); // returns true\nconsole.log(array.isarray(y)); // returns false\n",
+  "published": "10/23/2014",
+  "author":"Maciek",
+  "source": "https://developer.mozilla.org/en-Us/docs/Web/Javascript/Reference/Global_Objects/array/isarray",
+  "tags": "array"
+  },
+  {
+  "id": "3",
+  "name": "Check if a value is an integer",
+  "article": "There are a few different ways you can determine if a value is an integer in Javascript. ECMascript6 provides a direct isInteger method, but for current browsers you can apply a few different methods. The simplest is to compare the result of Math.round to the original value. Using triple equality checking also handles non-numbers as well.",
+  "code": "function isInteger(x) {\n  return Math.round(x) === x;\n}",
+  "published": "05/27/2014",
+  "author":"Dr. axel Rauschmayer",
+  "source": "http://www.2ality.com/2014/05/is-integer.html",
+  "tags": "math"
+  },
+  {
+  "id": "5",
+  "name": "Work with Query string Data",
+  "article": "The query string (everything after the question mark in the URL) can be parsed with a few simple string functions. The code below automatically parses the query string and stores it in a variable called query. Given a URL of the form kittens.html?x=1&y=2, the query object will contain an X and Y property with the proper values.",
+  "code": "var query = (function() {\n  function decode(string) {\n  return decodeURIComponent(string.replace(/\\+/g, \" \"));\n  }\n  var result = {};\n  if (location.search) {\n  location.search.substring(1).split('&').forEach(function(pair) {\n    pair = pair.split('=');\n    result[decode(pair[0])] = decode(pair[1]);\n  });\n  }\n  return result;\n})();\n",
+  "published": "05/08/2014",
+  "author":"Jakub Jankiewicz",
+  "source": "",
+  "tags": "misc"
+  },
+  {
+  "id": "6",
+  "name": "Use chained method calls",
+  "article": "Libraries like jQuery support chained method calls. This allows you to run multiple different operations at once. For example: <p/> $(\"someselector\").addClass(\"cool\").appendTo(\"somethingElse\"); <p/> In order to support this your methods need to perform their particular action but then return it's own apI again to the caller. In the example below, the Cyclone object supports methods spin, to, with, and start. Notice how spin, to, and with return pointers to the apI such that you can chain them as you see it.",
+  "code": "var Cyclone = function (name) {\n this.name = name;\n};\n\nCyclone.prototype.spin = function () {\n  var cycloneOptions = {};\n\n  var start = function () {\n  this.move(cycloneOptions);\n  }.bind(this);\n\n  var withstuff = function (debris) {\n  cycloneOptions.debris = debris;\n  return {\n    start: start\n  }\n  };\n\n  var to = function (location) {\n  cycloneOptions.location = location;\n  return {\n    start: start,\n    withstuff: withstuff\n  }\n  };\n\n  return {\n  to: to\n  }\n};\n\nCyclone.prototype.move = function (options) {\n  // Move the cyclone with the given options\n};\n\nvar marmaduke = new Cyclone('Marmaduke');\nmarmaduke.spin().to('Japan').start();  // a standard typhoon\n\nvar nigel = new Cyclone('Nigel');\nnigel.spin().to('Japan').withstuff('Haddock').start();  // a typhoon loaded with dead fish",
+  "published": "05/02/2014",
+  "author":"steve Brownlee",
+  "source": "https://medium.com/backticks-tildes/understanding-method-chaining-in-javascript-647a9004bd4f",
+  "tags": "misc"
+  },
+  {
+  "id": "7",
+  "name": "Get the current URL via Javascript",
+  "article": "There's actually two different ways to get the current URL. Both document.URL and document.location.href return the URL. However, if you wish to actually change the document's location, only document.location.href. If you only need to read the value, then document.URL is fine.\n\nNote that if you wish to work with the various parts of the current location, inspect document.location. It has properties for things like the port, protocol, etc.",
+  "code": "var ourLocation = document.URL;\nconsole.log(\"Currently at \" + ourLocation);",
+  "published": "08/15/2013",
+  "author":"Steve Brownlee",
+  "source": "https://developer.mozilla.org/en-Us/docs/Web/apI/document.URL",
+  "tags": "misc"
+  },
+  {
+  "id": "8",
+  "name": "Restrict a number to a range.",
+  "article": "Given that you need to restrict a number to a lower and upper bound, the function below will handle it by using a combination of Math.min and Math.max.\n\n_number is the number you want to restrict. _min is the minimal value. _max is the maximum value.\n\nIf the _number is less than _min, the function returns the _min value. If the _number is greater than _max, the function returns _max value.",
+  "code": "function bound(_number, _min, _max){\n  return Math.max(Math.min(_number, _max), _min);\n}",
+  "published": "08/13/2013",
+  "author":"Chrysto panayotov",
+  "source": "http://blog.bassta.bg/category/snippets/",
+  "tags": "math"
+  },
+  {
+  "id": "9",
+  "name": "Perform date manipulations based on adding or subtracting time",
+  "article": "A common programming challenge is to perform simple date \"math\" on a value. so for example, given that you have a certain date, what date will it be three hours from then? Or - if today is the 27th, what month will it be in two days? There are many ways of doing this (and many libraries available with their own implementation), but one simple way is just combine a get and set call. so for example, adding three hours to a Javascript date can be done by using setHours after running getHours. In the code below, I've demonstrated multiple different versions of this in action.",
+  "code": "//First, start with a particular time\nvar date = new Date();\n\n//add two hours\ndate.setHours(date.getHours() + 2);\n\n//Go back 3 days\ndate.setDate(date.getDate() - 3);\n\n//One minute ago...\ndate.setMinutes(date.getMinutes() - 1);",
+  "published": "07/25/2013",
+  "author":"John Doy",
+  "source": "https://developer.mozilla.org/en-Us/docs/Web/Javascript/Reference/Global_Objects/Date",
+  "tags": "date"
+  },
+  {
+  "id": "10",
+  "name": "Create a clone of an object.",
+  "article": "While there are various ways to clone an object, this one is extremely consistent and also performs well on jsperf tests. However, please note that this technique with \"plain objects\" (ones that inherit directly from Object.prototype). see the comments for further discussion.",
+  "code": "function clone(obj) {\n  return JsON.parse(JsON.stringify(obj));\n}",
+  "published": "06/29/2013",
+  "author":"Don Burks",
+  "source": "",
+  "tags": "object"
+  },
+  {
+  "id": "11",
+  "name": "Generate an epoch.",
+  "article": "Javascript's Date Object always works in milliseconds, but most date/time code works on unix epochs. This is just a quickie one-off function designed to give you an epoch to work with.",
+  "code": "function timestamp() {\n  return Math.round(Date.now() / 1000);\n}",
+  "published": "06/28/2013",
+  "author":"Don Burks",
+  "source": "",
+  "tags": "date"
+  },
+  {
+  "id": "12",
+  "name": "Map a NodeList to an array of properties.",
+  "article": "The NodeList type does not implement the useful bits of the array interface. This code essentially recreates the list into a regular array.",
+  "code": "var nodes = document.queryselectorall('a');\nvar urls = [].map.call(nodes, function(node) {\n  return node.href;\n});\n",
+  "published": "06/27/2013",
+  "author":"n1k0",
+  "source": "",
+  "tags": "array"
+  },
+  {
+  "id": "13",
+  "name": "Combining Library and Worker code in one script.",
+  "article": "Worker location is determined relative to the html page not to the script that calls them. so if you need to call a worker from a script that might be called as <script src=\"script.js\"> on one page and <script src=\"js/script.js\"> on another this pattern lets you avoid using absolute URLs.",
+  "code": "\n if (typeof document === \"undefined\") {(function(self){\n    /*\n    worker stuff\n    */\n})(self)} else {(function(exports){\n  \"use strict\";\n  function getpath(){\n    var scripts = document.getElementsByTagName(\"script\");\n    var len = scripts.length;\n    var i = 0;\n    while(i */if(/scriptWithWorker(\\.min)?\\.js/.test(scripts[i].src)){\n        return scripts[i].src;\n      }\n      i++;\n    }\n  }\n  var worker = new Worker(getpath());\n  /*\n  non-worker code\n  */\n})(window)};\n",
+  "published": "06/27/2013",
+  "author":"Calvin Metcalf",
+  "source": "",
+  "tags": "workers"
+  },
+  {
+    "id": "1",
+    "name": "Create a random nonce string using Javascript",
+    "article": "Have you ever needed to come up with a random string of characters say for a password? Maybe you're looking for a random string of characters for an oauth 1.0 nonce. The function below gives an example of how to do this. We first define a string of all the allowed characters in our final randomized string. We then loop until a given length which will represent the string size. In this loop we will look at the allowed character string as a kind of array (character by character) and randomly choose an index of the array.",
+    "code": "var randomstring = function(length) {\n  var text = \"\";\n  var possible = \"aBCDEFGHIJKLMNOpQRsTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";\n  for(var i = 0; i < length; i++) {\n  text += possible.charat(Math.floor(Math.random() * possible.length));\n  }\n  return text;\n}",
+    "published": "03/10/2015",
+    "author":" Nic Raboy",
+    "source": "https://blog.nraboy.com/2015/03/create-a-random-nonce-string-using-javascript/",
+    "tags": "string"
+  },
+  {
+  "id": "14",
+  "name": "Traversing DOM (sub)trees with a recursive \"walk the DOM\" function.",
+  "article": "This function traverses a DOM (sub)tree and executes a given function on each Element and Text node it visits.",
+  "code": "function walkTheDOM(node, func) {\n  func(node);\n  node = node.firstChild;\n  while (node) {\n  walkTheDOM(node, func);\n  node = node.nextsibling;\n  }\n}\n\n// Example usage: process all Text nodes on the page\nwalkTheDOM(document.body, function (node) {\n  if (node.nodeType === 3) { // Is it a Text node?\n  var text = node.data.trim();\n  if (text.length > 0) { // Does it have non white-space text content?\n    // process text\n  }\n  }\n});",
+  "published": "06/26/2013",
+  "author":"Douglas Crockford",
+  "source": "http://www.youtube.com/watch?v=Y2Y0U-2qJMs&feature=youtu.be&t=27m15s",
+  "tags": "array"
+  },
+  {
+  "id": "15",
+  "name": "Preserving variables inside async calls called in a loop.",
+  "article": "If you want to run asynchronous functions inside a loop, but still want to keep the index or other variables after a callback gets executed you can wrap your code in an IIFE (immediately-invoked function expression).",
+  "code": "var arr = ['Hello', 'World', 'Javascript', 'Async', ':)'];\nfor( var i = 0; i < arr.length; i++) {\n (function(index){\n   setTimeout(function(){\n\n      console.log(arr[index]);\n   }, 500);\n\n })(i);\n}",
+  "published": "02/03/2013",
+  "author":"Dominic Bartl",
+  "source": "http://benalman.com/news/2010/11/immediately-invoked-function-expression/",
+  "tags": "function async"
+  },
+  {
+  "id": "16",
+  "name": "Run code when the document has loaded.",
+  "article": "Most popular Javascript frameworks make it easy to run code when the document is loaded. But if you aren't using a framework, you can simply listen for the DOMContentLoaded event instead. This event is fired when the document's HTML is loaded and parsed, but before any stylesheets or images may be loaded.",
+  "code": "document.addEventListener(\"DOMContentLoaded\", init, false);\n\nfunction init() {\n   console.log(\"init\");\n\n }",
+  "published": "06/20/2013",
+  "author":"Jane Dou",
+  "source": "https://developer.mozilla.org/en-Us/docs/Web/Reference/Events/DOMContentLoaded",
+  "tags": "event"
+  },
+  {
+  "id": "17",
+  "name": "Determine touch support and add handlers.",
+  "article": "Determine if touch events are available and use a single line to add an event listener to handle mouse or touch in most cases.",
+  "code": "touch = ( 'ontouchstart' in document.documentElement ) ? true : false;\n\n// Quick ternary operation based on previous findings\nelement = document.queryselector( '#yourElement' );\nelement.addEventListener( touch ? 'touchstart' : 'mousedown', doInputstart );\n\n// Get the coordinates based on input type\nif( touch )\n{\n  // stop the default handling of the event\n  evt.preventDefault();\n\n  // Get the touch coordinates\n  clientX = evt.touches[0].clientX;\n  clientY = evt.touches[0].clientY;\n} else {\n  // Not touch so grab mouse coordinates\n  clientX = evt.clientX;\n  clientY = evt.clientY;\n}",
+  "published": "06/10/2014",
+  "author":"Kevin Hoyt",
+  "source": "",
+  "tags": "touch mobile event"
+  },
+  {
+  "id": "18",
+  "name": "Use jQuery-like selectors without jQuery.",
+  "article": "If you wish to use jQuery-like selectors without having to actually load the jQuery framework, you can use this simple function to mimic selector behavior.\n\nThis function will returns false if nothing found, a DOM node if exactly one element is found and the list of matches otherwise.\n\nfunction $( cssquery ) {",
+  "code": "function $( cssquery ) {\n  var t = document.queryselectorall(cssquery);\n  return (t.length === 0) ? false : (t.length === 1) ? t[0] : t;\n}",
+  "published": "12/20/2013",
+  "author":"Erik Haubold",
+  "source": "",
+  "tags": "dom css"
+  },
+  {
+  "id": "19",
+  "name": "Return a random whole number in a range.",
+  "article": "This recipe will return a whole number between a lower and higher range. For a deeper discussion of this code, see this stackOverflow comment from Ionut stan: http://stackoverflow.com/a/1527820/52160.",
+  "code": "/**\n * Returns a random integer between min and max\n * Using Math.round() will give you a non-uniform distribution!\n */\nfunction getRandomInt (min, max) {\n  return Math.floor(Math.random() * (max - min + 1)) + min;\n}",
+  "published": "02/14/2013",
+  "author":"John Dou",
+  "source": "https://developer.mozilla.org/en-Us/docs/Web/Javascript/Reference/Global_Objects/Math/random",
+  "tags": "math"
+  }
+]
+}
